@@ -1,0 +1,15 @@
+﻿Name: EleWise.ELMA.ELMAHelperBot.Web
+Module: EleWise.ELMA.ELMAHelperBot
+AntiForgery: disabled
+DisplayName: МуModule
+Author: My Company
+Website: http://www.elma-bpm.ru
+Version: 3.0.0
+OrchardVersion: 1.0.20
+Description: My ELMA3 Module
+Features:
+    EleWise.ELMA.ELMAHelperBot.Web:
+        Name: EleWise.ELMA.ELMAHelperBot.Web
+        Description: My ELMA3 Module
+        Category: My ELMA Modules
+        Dependencies: EleWise.ELMA.BPM.Web.Content, EleWise.ELMA.BPM.Web.Common

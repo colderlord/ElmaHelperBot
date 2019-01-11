@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.168
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EleWise.ELMA.ElmaBot.Web", "EleWise.ELMA.ElmaBot.Web\EleWise.ELMA.ElmaBot.Web.csproj", "{475B50DD-AD40-4E52-88F9-310DD742523E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EleWise.ELMA.ElmaBot.Core", "EleWise.ELMA.ElmaBot.Core\EleWise.ELMA.ElmaBot.Core.csproj", "{C994824E-7E15-4BB2-863D-51C9A4F39504}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{475B50DD-AD40-4E52-88F9-310DD742523E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{475B50DD-AD40-4E52-88F9-310DD742523E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{475B50DD-AD40-4E52-88F9-310DD742523E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{475B50DD-AD40-4E52-88F9-310DD742523E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C994824E-7E15-4BB2-863D-51C9A4F39504}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C994824E-7E15-4BB2-863D-51C9A4F39504}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C994824E-7E15-4BB2-863D-51C9A4F39504}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C994824E-7E15-4BB2-863D-51C9A4F39504}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A8215417-0177-44C5-A758-C5739626E1EE}
+	EndGlobalSection
+EndGlobal

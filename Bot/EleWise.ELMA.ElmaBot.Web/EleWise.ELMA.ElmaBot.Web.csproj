@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <AssemblyName>EleWise.ELMA.ElmaBot.Web</AssemblyName>
+    <RootNamespace>EleWise.ELMA.ElmaBot.Web</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\" />
+  </ItemGroup>
+
+  <ItemGroup>
+	<PackageReference Include="Microsoft.AspNetCore.All" Version="2.1.6" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\EleWise.ELMA.ElmaBot.Core\EleWise.ELMA.ElmaBot.Core.csproj" />
+  </ItemGroup>
+
+</Project>
