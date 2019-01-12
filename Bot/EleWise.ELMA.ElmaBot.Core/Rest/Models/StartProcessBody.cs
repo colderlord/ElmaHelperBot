@@ -6,7 +6,7 @@ namespace EleWise.ELMA.ElmaBot.Core.Rest.Models
     public class StartProcessBody
     {
         [DataMember]
-        public string ProcessToken { get; set; }
+        public long ProcessHeaderId { get; set; }
 
         [DataMember]
         public string ProcessName { get; set; }

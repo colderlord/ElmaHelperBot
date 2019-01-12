@@ -15,16 +15,24 @@ namespace EleWise.ELMA.TelegramBot.Handlers
         private readonly IAuthorizationService authorizationService;
         private readonly IChatRepository chatRepository;
         private readonly IAuthRepository authRepository;
+        private readonly AllCommands allCommands;
+        private readonly IBotWebApiService botWebApiService;
         public AuthorizationCommand(
             IAuthorizationService authorizationService, 
             IChatRepository chatRepository, 
             IBotService botService,
-            IAuthRepository authRepository) : base(botService)
+            IAuthRepository authRepository,
+            AllCommands allCommands,
+            IBotWebApiService botWebApiService) : base(botService)
         {
             this.authorizationService = authorizationService;
             this.chatRepository = chatRepository;
             this.authRepository = authRepository;
+            this.allCommands = allCommands;
+            this.botWebApiService = botWebApiService;
         }
+
+        public override bool Show => false;
 
         public override string CommandName => "auth";
 
@@ -41,6 +49,15 @@ namespace EleWise.ELMA.TelegramBot.Handlers
         public override async Task HandleCommand(long identifier, object message)
         {
             var m = message as Message;
+            var auth = authRepository.GetCurrentAuth(identifier);
+            if (auth != null)
+            {
+                await BotService.Client.SendTextMessageAsync(identifier, $"Привет {m.From.FirstName} {m.From.LastName}! Вы уже авторизованы!");
+                chatRepository.ResetState(identifier);
+                await allCommands.HandleCommand(identifier, message);
+                return;
+            }
+ 
             await BotService.Client.SendTextMessageAsync(identifier, $"Привет, {m.From.FirstName} {m.From.LastName}!");
             await ((ITelegramBotClient)BotService.Client).SendTextMessageAsync(identifier, "Введите ваш логин:");
             chatRepository.SetState(identifier, this, checkLogin);
@@ -54,13 +71,19 @@ namespace EleWise.ELMA.TelegramBot.Handlers
                 var model = await authorizationService.LoginWithUserName(m.Text, null);
                 if (model == null)
                 {
-                    await((ITelegramBotClient)BotService.Client).SendTextMessageAsync(identifier, "Неуспешная авторизация! Попробуем снова?");
+                    await((ITelegramBotClient)BotService.Client).SendTextMessageAsync(identifier, "Неуспешная авторизация! Введите корректный логин");
                 }
                 else
                 {
                     authRepository.SetAuth(identifier, model);
                     await ((ITelegramBotClient)BotService.Client).SendTextMessageAsync(identifier, "Авторизация прошла успешно!");
+
+
+                    await botWebApiService.UpdateUser(identifier.ToString(), model);
+
                     chatRepository.ResetState(identifier);
+
+                    await allCommands.HandleCommand(identifier, message);
                 }
             }
         }

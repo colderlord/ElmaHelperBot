@@ -14,7 +14,12 @@ namespace EleWise.ELMA.ElmaBot.Core.Rest.Services
 
         public Task<StartProcessResult> StartProcessAsync(StartProcessBody body, Auth auth)
         {
-            return restClient.ExecuteWithAuth<StartProcessResult>($"/Workflow/StartProcessAsync", body, RestSharp.Method.POST, auth);
+            return restClient.ExecuteWithAuth<StartProcessResult>($"/api/rest/Workflow/StartProcessAsync", body, RestSharp.Method.POST, auth);
+        }
+
+        public Task<StartableProcesses> StartableProcesses(Auth auth)
+        {
+            return restClient.ExecuteWithAuth<StartableProcesses>($"/api/rest/Workflow/StartableProcesses", null, RestSharp.Method.POST, auth);
         }
     }
 }

@@ -24,16 +24,25 @@ namespace EleWise.ELMA.ElmaBot.Core.Handlers
 
         public override Task HandleCommand(long identifier, object message)
         {
-            if (commands == null)
-            {
-                commands = serviceProvider.GetServices<ICommand>().Where(c => c.Show);
-            }
-            var commandListString = $"Список команд бота: ";
+            var commands = GetAvailibleCommands();
+            var commandListString = $"Смотри, что я умею: ";
             foreach(var command in commands)
             {
                 commandListString += $"\r\n /{command.CommandName} {command.CommandDescription}";
             }
             return BotService.Client.SendTextMessageAsync(identifier, commandListString);
+        }
+
+        private IEnumerable<ICommand> GetAvailibleCommands()
+        {
+            if (commands == null)
+            {
+                commands = serviceProvider.GetServices<ICommand>().Where(c => c.Show);
+            }
+            foreach (var command in commands)
+            {
+                yield return command;
+            }
         }
     }
 }

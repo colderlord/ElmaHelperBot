@@ -16,7 +16,7 @@ namespace EleWise.ELMA.ElmaBot.Core.Rest
         
         public ELMARestClient()
         {
-            client = new RestClient("http://localhost:4747/api/rest");
+            client = new RestClient("http://localhost:4747");
         }
 
         public Task<T> Execute<T>(string url, object requestData, Method method, Dictionary<string, string> additionalHeaders = null) where T : new()

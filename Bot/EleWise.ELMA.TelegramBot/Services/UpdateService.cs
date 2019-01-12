@@ -1,7 +1,6 @@
 ﻿using System.Reflection;
 using System.Threading.Tasks;
 using EleWise.ELMA.ElmaBot.Core.Attributes;
-using EleWise.ELMA.ElmaBot.Core.Models;
 using EleWise.ELMA.ElmaBot.Core.Services;
 using EleWise.ELMA.TelegramBot.Handlers;
 using Telegram.Bot.Types;

@@ -14,7 +14,7 @@ namespace EleWise.ELMA.ElmaBot.Core.Rest.Services
 
         public Task<Auth> LoginWithUserName(string userName, string password)
         {
-            return restClient.Execute<Auth>($"/Authorization/LoginWith?username={userName}", password, RestSharp.Method.POST);
+            return restClient.Execute<Auth>($"/api/rest/Authorization/LoginWith?username={userName}", password, RestSharp.Method.POST);
         }
     }
 }

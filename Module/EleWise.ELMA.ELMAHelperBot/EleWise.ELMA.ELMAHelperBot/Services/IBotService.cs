@@ -1,6 +1,5 @@
 ﻿using System.ServiceModel;
 using System.ServiceModel.Web;
-using EleWise.ELMA.API.Models;
 using EleWise.ELMA.Services.Public;
 using EleWise.ELMA.Web.Service;
 
@@ -9,23 +8,13 @@ namespace EleWise.ELMA.ELMAHelperBot.Services
     [ServiceContract(Namespace = APIRouteProvider.ApiServiceNamespaceRoot)]
     [WsdlDocumentation(typeof(__ITestWebApiServiceResources), nameof(__ITestWebApiServiceResources.BotWebApiServiceDescription))]
     [FaultContractBehavior(typeof(PublicServiceException))]
-    public interface IBotWebApiService
+    public interface IBotService
     {
         [OperationContract]
-        [WebInvoke(Method = "POST", UriTemplate = "/CheckLogin?login={login}")]
+        [WebInvoke(Method = "POST", UriTemplate = "/UpdateUser?chatId={chatId}&userId={userId}")]
         [WsdlDocumentation(typeof(__ITestWebApiServiceResources), nameof(__ITestWebApiServiceResources.CheckLoginDescription))]
         [return: WsdlParamOrReturnDocumentation(typeof(__ITestWebApiServiceResources), nameof(__ITestWebApiServiceResources.CheckLoginDescription))]
-        AuthResponse CheckLogin(
-            [WsdlParamOrReturnDocumentation(typeof(__ITestWebApiServiceResources), nameof(__ITestWebApiServiceResources.LoginDescription))] string login);
-
-        [OperationContract]
-        [WebGet(UriTemplate = "/BotAuth?something={something}&userName={userName}")]
-        [WsdlDocumentation(typeof(__ITestWebApiServiceResources), nameof(__ITestWebApiServiceResources.CheckLoginDescription))]
-        [return: WsdlParamOrReturnDocumentation(typeof(__ITestWebApiServiceResources), nameof(__ITestWebApiServiceResources.CheckLoginDescription))]
-        AuthResponse BotAuth(
-            [WsdlParamOrReturnDocumentation(typeof(__ITestWebApiServiceResources), nameof(__ITestWebApiServiceResources.LoginDescription))] string login,
-            [WsdlParamOrReturnDocumentation(typeof(__ITestWebApiServiceResources), nameof(__ITestWebApiServiceResources.UserNameDescription))] string userName,
-            [WsdlParamOrReturnDocumentation(typeof(__ITestWebApiServiceResources), nameof(__ITestWebApiServiceResources.PasswordDescription))] string password);
+        void UpdateUser([WsdlParamOrReturnDocumentation(typeof(__ITestWebApiServiceResources), nameof(__ITestWebApiServiceResources.LoginDescription))] string chatId, string userId);
     }
 
     public class __ITestWebApiServiceResources

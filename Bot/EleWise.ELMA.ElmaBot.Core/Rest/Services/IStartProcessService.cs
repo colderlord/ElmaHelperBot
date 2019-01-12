@@ -6,5 +6,7 @@ namespace EleWise.ELMA.ElmaBot.Core.Rest.Services
     public interface IStartProcessService
     {
         Task<StartProcessResult> StartProcessAsync(StartProcessBody body, Auth auth);
+
+        Task<StartableProcesses> StartableProcesses(Auth auth);
     }
 }

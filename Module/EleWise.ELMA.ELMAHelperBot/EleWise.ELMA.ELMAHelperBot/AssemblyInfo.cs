@@ -16,14 +16,14 @@ namespace EleWise.ELMA.ELMAHelperBot
     {
         
         /// <summary>
-        /// UID of this class
+        /// Уникальный идентификатор данного класса
         /// </summary>
         public const string UID_S = "bc6aec35-6d5c-46e6-b749-3d5b02d80885";
         
         private static global::System.Guid _UID = new global::System.Guid(UID_S);
         
         /// <summary>
-        /// UID of this class
+        /// Уникальный идентификатор данного класса
         /// </summary>
         public static global::System.Guid UID
         {

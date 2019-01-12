@@ -53,6 +53,9 @@ namespace EleWise.ELMA.ElmaBot.Web
             services.AddSingleton<IStartProcessRepository, StartProcessRepository>();
             services.AddSingleton<StartProcessRepository>();
 
+            services.AddSingleton<IBotWebApiService, BotWebApiService>();
+            services.AddSingleton<BotWebApiService>();
+
             services.AddScoped<IUpdateService, UpdateService>();
             services.AddSingleton<IBotService, BotService>();
             services.AddSingleton<BotService>();
