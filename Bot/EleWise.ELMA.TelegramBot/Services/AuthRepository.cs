@@ -26,5 +26,10 @@ namespace EleWise.ELMA.TelegramBot.Services
         {
             loginRepo[chatId] = auth;
         }
+
+        public bool Authorized(long chatId)
+        {
+            return loginRepo.ContainsKey(chatId);
+        }
     }
 }

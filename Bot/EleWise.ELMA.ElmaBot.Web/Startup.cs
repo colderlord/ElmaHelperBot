@@ -62,14 +62,12 @@ namespace EleWise.ELMA.ElmaBot.Web
             services.AddSingleton<UnknownCommand>();
             services.AddSingleton<ICommand, AllCommands>();
             services.AddSingleton<AllCommands>();
-            //services.AddSingleton<ICommand, TestCommand>();
-            //services.AddSingleton<TestCommand>();
             services.AddSingleton<ICommand, AuthorizationCommand>();
             services.AddSingleton<AuthorizationCommand>();
             services.AddSingleton<ICommand, StartProcessCommand>();
             services.AddSingleton<StartProcessCommand>();
-
-
+            services.AddSingleton<ICommand, ResetCommand>();
+            services.AddSingleton<ResetCommand>();
         }
     }
 }

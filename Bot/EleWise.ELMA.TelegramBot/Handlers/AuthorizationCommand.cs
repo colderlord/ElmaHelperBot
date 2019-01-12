@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using EleWise.ELMA.ElmaBot.Core.Handlers;
 using EleWise.ELMA.ElmaBot.Core.Rest.Services;

@@ -9,6 +9,8 @@ namespace EleWise.ELMA.ElmaBot.Core.Handlers
         {
         }
 
+        public override bool Show => false;
+
         public override string CommandName => "unknown";
 
         public override Task HandleCommand(long identifier, object message)

@@ -1,5 +1,9 @@
-﻿using System.Threading.Tasks;
+﻿using System.Reflection;
+using System.Threading.Tasks;
+using EleWise.ELMA.ElmaBot.Core.Attributes;
+using EleWise.ELMA.ElmaBot.Core.Models;
 using EleWise.ELMA.ElmaBot.Core.Services;
+using EleWise.ELMA.TelegramBot.Handlers;
 using Telegram.Bot.Types;
 using Telegram.Bot.Types.Enums;
 
@@ -10,12 +14,16 @@ namespace EleWise.ELMA.TelegramBot.Services
         private readonly IBotService botService;
         private readonly ICommandService commandService;
         private readonly IChatRepository chatRepository;
+        private readonly IAuthRepository authRepository;
+        private readonly AuthorizationCommand authorizationCommand;
 
-        public UpdateService(IBotService botService, ICommandService commandService, IChatRepository chatRepository)
+        public UpdateService(IBotService botService, ICommandService commandService, IChatRepository chatRepository, IAuthRepository authRepository, AuthorizationCommand authorizationCommand)
         {
             this.botService = botService;
             this.commandService = commandService;
             this.chatRepository = chatRepository;
+            this.authRepository = authRepository;
+            this.authorizationCommand = authorizationCommand;
         }
 
         public async Task EchoAsync(Update update)
@@ -30,12 +38,30 @@ namespace EleWise.ELMA.TelegramBot.Services
                     var text = message.Text;
                     if (currentState != null)
                     {
-                        await currentState.HandleCurrentState(chatId, message, "");
+                        var stateCommand = currentState.Command;
+
+                        var authorized = authRepository.Authorized(chatId);
+                        var needAuth = stateCommand.GetType().GetCustomAttribute<AuthorizationAttribute>() != null;
+                        if (needAuth && !authorized)
+                        {
+                            await authorizationCommand.HandleCommand(chatId, message);
+                            break;
+                        }
+
+                        await currentState.Command.HandleCommandState(chatId, currentState.State, message, "");
                         break;
                     }
                     var command = commandService.GetCommandFromText(text);
                     if (command != null)
                     {
+                        var authorized = authRepository.Authorized(chatId);
+                        var needAuth = command.GetType().GetCustomAttribute<AuthorizationAttribute>() != null;
+                        if (needAuth && !authorized)
+                        {
+                            await authorizationCommand.HandleCommand(chatId, message);
+                            break;
+                        }
+
                         await command.HandleCommand(chatId, message);
                     }
                     else
@@ -50,47 +76,26 @@ namespace EleWise.ELMA.TelegramBot.Services
                     // Обработка callback
                     var message = update.CallbackQuery.Message;
                     var chatId = message.Chat.Id;
+                    
                     var currentState = chatRepository.GetCurrentState(chatId);
+                    
                     if (currentState != null)
                     {
-                        await currentState.HandleCurrentState(chatId, message, update.CallbackQuery.Data);
+                        var command = currentState.Command;
+
+                        var authorized = authRepository.Authorized(chatId);
+                        var needAuth = command.GetType().GetCustomAttribute<AuthorizationAttribute>() != null;
+                        if (needAuth && !authorized)
+                        {
+                            await authorizationCommand.HandleCommand(chatId, message);
+                            break;
+                        }
+
+                        await command.HandleCommandState(chatId, currentState.State, message, update.CallbackQuery.Data);
                     }
                     break;
                 }
             }
-
-            //if (update.Type != UpdateType.Message)
-            //{
-            //    return;
-            //}
-
-            //var message = update.Message;
-
-            //ICommand command = commandService.GetCommandFromMessageText(message.Text);
-            //if (command != null)
-            //{
-            //    await command.HandleCommand(message.Chat.Id, message.Text);
-            //}
-            //else
-            //{
-            //    // Возвращаем текст
-            //    await botService.Client.SendTextMessageAsync(message.Chat.Id, $"Вы сказали: {message.Text}");
-            //}
-            //else if (message.Type == MessageType.Photo)
-            //    //{
-            //    //    // Download Photo
-            //    //    var fileId = message.Photo.LastOrDefault()?.FileId;
-            //    //    var file = await _botService.Client.GetFileAsync(fileId);
-
-            //    //    var filename = file.FileId + "." + file.FilePath.Split('.').Last();
-
-            //    //    using (var saveImageStream = System.IO.File.Open(filename, FileMode.Create))
-            //    //    {
-            //    //        await _botService.Client.DownloadFileAsync(file.FilePath, saveImageStream);
-            //    //    }
-
-            //    //    await _botService.Client.SendTextMessageAsync(message.Chat.Id, "Thx for the Pics");
-            //    //}
         }
     }
 }

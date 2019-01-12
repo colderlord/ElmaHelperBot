@@ -15,6 +15,8 @@ namespace EleWise.ELMA.ElmaBot.Core.Handlers
 
         public abstract string CommandName { get; }
 
+        public virtual bool Show => true;
+
         public virtual IEnumerable<string> AlternativeCommand => Enumerable.Empty<string>();
 
         public virtual string CommandDescription { get; }

@@ -20,11 +20,13 @@ namespace EleWise.ELMA.ElmaBot.Core.Handlers
 
         public override string CommandName => "all";
 
+        public override bool Show => false;
+
         public override Task HandleCommand(long identifier, object message)
         {
             if (commands == null)
             {
-                commands = serviceProvider.GetServices<ICommand>().Where(c => c.CommandName != "unknown" && c.CommandName != "all" && c.CommandName != "start");
+                commands = serviceProvider.GetServices<ICommand>().Where(c => c.Show);
             }
             var commandListString = $"Список команд бота: ";
             foreach(var command in commands)

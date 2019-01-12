@@ -7,5 +7,7 @@ namespace EleWise.ELMA.ElmaBot.Core.Services
         Auth GetCurrentAuth(long chatId);
 
         void SetAuth(long chatId, Auth auth);
+
+        bool Authorized(long chatId);
     }
 }

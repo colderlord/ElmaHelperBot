@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Dynamic;
 using System.Threading.Tasks;
+using EleWise.ELMA.ElmaBot.Core.Attributes;
 using EleWise.ELMA.ElmaBot.Core.Handlers;
 using EleWise.ELMA.ElmaBot.Core.Rest.Models;
 using EleWise.ELMA.ElmaBot.Core.Rest.Services;
@@ -12,6 +13,7 @@ using Telegram.Bot.Types.ReplyMarkups;
 
 namespace EleWise.ELMA.TelegramBot.Handlers
 {
+    [Authorization]
     public class StartProcessCommand : BaseCommand
     {
         private const string chooseProcess = "chooseProcess";

@@ -16,10 +16,12 @@ namespace EleWise.ELMA.TelegramBot.Handlers
 
         public override string CommandName => "start";
 
+        public override bool Show => false;
+
         public override async Task HandleCommand(long identifier, object message)
         {
             var m = message as Message;
-            await authorizationCommand.HandleCommand(identifier, "");
+            await authorizationCommand.HandleCommand(identifier, message);
         }
     }
 }

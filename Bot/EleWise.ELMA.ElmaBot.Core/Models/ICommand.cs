@@ -24,6 +24,11 @@ namespace EleWise.ELMA.ElmaBot.Core.Models
         string CommandDescription { get; }
 
         /// <summary>
+        /// Отображать команду
+        /// </summary>
+        bool Show { get; }
+
+        /// <summary>
         /// Обработать команду
         /// </summary>
         /// <param name="identifier">Идентификатор чата</param>
