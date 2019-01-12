@@ -20,7 +20,7 @@ namespace EleWise.ELMA.ElmaBot.Core.Handlers
 
         public override string CommandName => "all";
 
-        public override Task HandleCommand(long identifier, string text)
+        public override Task HandleCommand(long identifier, object message)
         {
             if (commands == null)
             {

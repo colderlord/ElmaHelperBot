@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace EleWise.ELMA.ElmaBot.Core.Models
 {
@@ -13,6 +14,11 @@ namespace EleWise.ELMA.ElmaBot.Core.Models
         string CommandName { get; }
 
         /// <summary>
+        /// Альтернативные команды
+        /// </summary>
+        IEnumerable<string> AlternativeCommand { get; }
+
+        /// <summary>
         /// Описание команды
         /// </summary>
         string CommandDescription { get; }
@@ -21,15 +27,16 @@ namespace EleWise.ELMA.ElmaBot.Core.Models
         /// Обработать команду
         /// </summary>
         /// <param name="identifier">Идентификатор чата</param>
-        Task HandleCommand(long identifier, string text);
+        /// <param name="message">Сообщение</param>
+        Task HandleCommand(long identifier, object message);
 
         /// <summary>
         /// Обработать состояние команды чата
         /// </summary>
         /// <param name="identifier">Идентификатор чата</param>
         /// <param name="chatState">Состояние чата</param>
-        /// <param name="text">Текст пользователя</param>
-        /// <returns></returns>
-        Task HandleCommandState(long identifier, string chatState, string text);
+        /// <param name="message">Сообщение</param>
+        /// <param name="data">Данные</param>
+        Task HandleCommandState(long identifier, string chatState, object message, string data);
     }
 }

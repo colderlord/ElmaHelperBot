@@ -11,9 +11,9 @@ namespace EleWise.ELMA.ElmaBot.Core.Handlers
 
         public override string CommandName => "unknown";
 
-        public override Task HandleCommand(long identifier, string text)
+        public override Task HandleCommand(long identifier, object message)
         {
-            return BotService.Client.SendTextMessageAsync(identifier, $"Указанной команды {text} не существует! Для просмотра всех команд введите '/'");
+            return BotService.Client.SendTextMessageAsync(identifier, $"Указанной команды не существует! Для просмотра всех команд введите '/'");
         }
     }
 }

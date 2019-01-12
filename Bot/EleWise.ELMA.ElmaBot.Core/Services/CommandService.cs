@@ -29,7 +29,7 @@ namespace EleWise.ELMA.ElmaBot.Core.Services
             text = text.Trim();
             if (!text.StartsWith('/'))
             {
-                return null;
+                return commands.FirstOrDefault(a => a.AlternativeCommand.Any(ac => ac.Equals(text, StringComparison.InvariantCultureIgnoreCase)));
             }
             if (text == "/")
             {

@@ -1,7 +1,10 @@
-﻿using EleWise.ELMA.ElmaBot.Core.Models;
+﻿using EleWise.ELMA.ElmaBot.Core.Handlers;
+using EleWise.ELMA.ElmaBot.Core.Models;
 using EleWise.ELMA.ElmaBot.Core.Rest;
 using EleWise.ELMA.ElmaBot.Core.Rest.Services;
 using EleWise.ELMA.ElmaBot.Core.Services;
+using EleWise.ELMA.TelegramBot.Handlers;
+using EleWise.ELMA.TelegramBot.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -35,9 +38,38 @@ namespace EleWise.ELMA.ElmaBot.Web
             services.AddSingleton<ELMARestClient>();
             services.AddSingleton<IAuthorizationService, AuthorizationService>();
             services.AddSingleton<AuthorizationService>();
+            services.AddSingleton<IStartProcessService, StartProcessService>();
+            services.AddSingleton<StartProcessService>();
 
             services.AddSingleton<ICommandService, CommandService>();
             services.AddSingleton<CommandService>();
+
+            services.AddSingleton<IChatRepository, ChatRepository>();
+            services.AddSingleton<ChatRepository>();
+
+            services.AddSingleton<IAuthRepository, AuthRepository>();
+            services.AddSingleton<AuthRepository>();
+
+            services.AddSingleton<IStartProcessRepository, StartProcessRepository>();
+            services.AddSingleton<StartProcessRepository>();
+
+            services.AddScoped<IUpdateService, UpdateService>();
+            services.AddSingleton<IBotService, BotService>();
+            services.AddSingleton<BotService>();
+            services.AddSingleton<ICommand, StartCommand>();
+            services.AddSingleton<StartCommand>();
+            services.AddSingleton<ICommand, UnknownCommand>();
+            services.AddSingleton<UnknownCommand>();
+            services.AddSingleton<ICommand, AllCommands>();
+            services.AddSingleton<AllCommands>();
+            //services.AddSingleton<ICommand, TestCommand>();
+            //services.AddSingleton<TestCommand>();
+            services.AddSingleton<ICommand, AuthorizationCommand>();
+            services.AddSingleton<AuthorizationCommand>();
+            services.AddSingleton<ICommand, StartProcessCommand>();
+            services.AddSingleton<StartProcessCommand>();
+
+
         }
     }
 }

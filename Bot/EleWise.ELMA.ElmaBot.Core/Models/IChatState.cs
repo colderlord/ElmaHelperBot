@@ -21,8 +21,9 @@ namespace EleWise.ELMA.ElmaBot.Core.Models
         /// Обработать текущее состояние
         /// </summary>
         /// <param name="identifier">Идентификатор чата</param>
-        /// <param name="text">Текст пользователя</param>
+        /// <param name="message">Сообщение</param>
+        /// <param name="data">Данные</param>
         /// <returns></returns>
-        Task HandleCurrentState(long identifier, string text);
+        Task HandleCurrentState(long identifier, object message, string data);
     }
 }

@@ -1,4 +1,6 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using EleWise.ELMA.ElmaBot.Core.Models;
 using EleWise.ELMA.ElmaBot.Core.Services;
 
@@ -13,11 +15,13 @@ namespace EleWise.ELMA.ElmaBot.Core.Handlers
 
         public abstract string CommandName { get; }
 
+        public virtual IEnumerable<string> AlternativeCommand => Enumerable.Empty<string>();
+
         public virtual string CommandDescription { get; }
 
-        public abstract Task HandleCommand(long identifier, string text);
+        public abstract Task HandleCommand(long identifier, object message);
 
-        public virtual Task HandleCommandState(long identifier, string chatState, string text)
+        public virtual Task HandleCommandState(long identifier, string chatState, object message, string data)
         {
             return Task.Delay(0);
         }
