@@ -1,4 +1,5 @@
-﻿using System.ServiceModel;
+﻿using System.Collections.Generic;
+using System.ServiceModel;
 using System.ServiceModel.Web;
 using EleWise.ELMA.Services.Public;
 using EleWise.ELMA.Web.Service;
@@ -15,6 +16,18 @@ namespace EleWise.ELMA.ELMAHelperBot.Services
         [WsdlDocumentation(typeof(__ITestWebApiServiceResources), nameof(__ITestWebApiServiceResources.CheckLoginDescription))]
         [return: WsdlParamOrReturnDocumentation(typeof(__ITestWebApiServiceResources), nameof(__ITestWebApiServiceResources.CheckLoginDescription))]
         void UpdateUser([WsdlParamOrReturnDocumentation(typeof(__ITestWebApiServiceResources), nameof(__ITestWebApiServiceResources.LoginDescription))] string chatId, string userId);
+
+        [OperationContract]
+        [WebGet(UriTemplate = "/GetProcessContext?headerid={headerid}")]
+        [WsdlDocumentation(typeof(__ITestWebApiServiceResources), nameof(__ITestWebApiServiceResources.CheckLoginDescription))]
+        [return: WsdlParamOrReturnDocumentation(typeof(__ITestWebApiServiceResources), nameof(__ITestWebApiServiceResources.CheckLoginDescription))]
+        List<ContextProcess> GetProcessContext([WsdlParamOrReturnDocumentation(typeof(__ITestWebApiServiceResources), nameof(__ITestWebApiServiceResources.LoginDescription))] long headerid);
+
+        [OperationContract]
+        [WebInvoke(Method = "POST", UriTemplate = "/EventCreate")]
+        [WsdlDocumentation(typeof(__ITestWebApiServiceResources), nameof(__ITestWebApiServiceResources.CheckLoginDescription))]
+        [return: WsdlParamOrReturnDocumentation(typeof(__ITestWebApiServiceResources), nameof(__ITestWebApiServiceResources.CheckLoginDescription))]
+        bool EventCreate(EventCreatorModel model);
     }
 
     public class __ITestWebApiServiceResources

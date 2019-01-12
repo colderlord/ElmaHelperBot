@@ -53,6 +53,12 @@ namespace EleWise.ELMA.ElmaBot.Web
             services.AddSingleton<IStartProcessRepository, StartProcessRepository>();
             services.AddSingleton<StartProcessRepository>();
 
+            services.AddSingleton<IProcessContextRepository, ProcessContextRepository>();
+            services.AddSingleton<ProcessContextRepository>();
+
+            services.AddSingleton<ICreateEventRepository, CreateEventRepository>();
+            services.AddSingleton<CreateEventRepository>();
+
             services.AddSingleton<IBotWebApiService, BotWebApiService>();
             services.AddSingleton<BotWebApiService>();
 
@@ -71,6 +77,9 @@ namespace EleWise.ELMA.ElmaBot.Web
             services.AddSingleton<StartProcessCommand>();
             services.AddSingleton<ICommand, ResetCommand>();
             services.AddSingleton<ResetCommand>();
+            services.AddSingleton<ICommand, EventCommand>();
+            services.AddSingleton<EventCommand>();
+            
         }
     }
 }

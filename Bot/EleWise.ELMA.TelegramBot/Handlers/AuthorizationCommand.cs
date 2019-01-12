@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using EleWise.ELMA.ElmaBot.Core.Handlers;
+using EleWise.ELMA.ElmaBot.Core.Rest.Models;
 using EleWise.ELMA.ElmaBot.Core.Rest.Services;
 using EleWise.ELMA.ElmaBot.Core.Services;
 using EleWise.ELMA.TelegramBot.Models;
@@ -76,7 +77,8 @@ namespace EleWise.ELMA.TelegramBot.Handlers
                 else
                 {
                     authRepository.SetAuth(identifier, model);
-                    await ((ITelegramBotClient)BotService.Client).SendTextMessageAsync(identifier, "Авторизация прошла успешно!");
+                    var additional = EasterEgg(model);
+                    await ((ITelegramBotClient)BotService.Client).SendTextMessageAsync(identifier, $"Авторизация прошла успешно!\r\n Хорошего дня {additional}");
 
 
                     await botWebApiService.UpdateUser(identifier.ToString(), model);
@@ -86,6 +88,24 @@ namespace EleWise.ELMA.TelegramBot.Handlers
                     await allCommands.HandleCommand(identifier, message);
                 }
             }
+        }
+
+        private string EasterEgg(Auth auth)
+        {
+            var id = auth.CurrentUserId;
+            if (id == "109")
+            {
+                return "Mr. No";
+            }
+            if (id == "129")
+            {
+                return "Boss. Сыграешь на гитаре после выступления?";
+            }
+            if (id == "103")
+            {
+                return "Антон. Наша команда с тобой не знакома :(";
+            }
+            return string.Empty;
         }
     }
 }

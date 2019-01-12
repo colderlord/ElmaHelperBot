@@ -8,5 +8,7 @@ namespace EleWise.ELMA.ElmaBot.Core.Rest.Services
         Task<StartProcessResult> StartProcessAsync(StartProcessBody body, Auth auth);
 
         Task<StartableProcesses> StartableProcesses(Auth auth);
+
+        Task<StartProcessForm> StartProcessForm(long headerId, Auth auth);
     }
 }

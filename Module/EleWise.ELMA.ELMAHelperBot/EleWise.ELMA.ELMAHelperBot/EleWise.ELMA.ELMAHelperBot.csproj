@@ -34,6 +34,10 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EleWise.ELMA.Calendar">
+      <HintPath>..\..\..\..\elma3\Extensions\Visual Studio2013\DesignerBin\EleWise.ELMA.Calendar.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="EleWise.ELMA.SDK">
       <HintPath>d:\Projects\elma3\Extensions\Visual Studio2013\DesignerBin\EleWise.ELMA.SDK.dll</HintPath>
       <Private>False</Private>
@@ -44,6 +48,10 @@
     </Reference>
     <Reference Include="EleWise.ELMA.Security">
       <HintPath>..\..\..\..\elma3\Extensions\Visual Studio2013\DesignerBin\EleWise.ELMA.Security.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="EleWise.ELMA.Workflow">
+      <HintPath>..\..\..\..\elma3\Extensions\Visual Studio2013\DesignerBin\EleWise.ELMA.Workflow.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Iesi.Collections">
@@ -63,6 +71,7 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Net.Http" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.ServiceModel.Web" />
     <Reference Include="System.Xml.Linq" />

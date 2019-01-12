@@ -55,7 +55,7 @@ namespace EleWise.ELMA.ELMAHelperBot.Services
             {
                 return;
             }
-            var text = SR.T($"Сообщение из ELMA:\r\n Тема: {message.Subject}\r\n Текст сообщения: {message.FullMessageText}");
+            var text = SR.T($"Сообщение из ELMA:\r\n Автор: {message.AuthorText}\r\n Тема: {message.Subject}\r\n Текст сообщения: {message.FullMessageText}\r\n {message.URL}");
             client.SendTextMessageAsync(long.Parse(recipient.JabberID), text);
         }
     }

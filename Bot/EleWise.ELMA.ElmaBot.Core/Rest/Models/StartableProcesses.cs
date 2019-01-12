@@ -28,4 +28,11 @@ namespace EleWise.ELMA.ElmaBot.Core.Rest.Models
     {
 
     }
+
+    [DataContract]
+    public class StartProcessForm
+    {
+        [DataMember]
+        public object Context { get; set; }
+    }
 }

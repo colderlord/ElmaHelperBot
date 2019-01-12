@@ -14,6 +14,7 @@ namespace EleWise.ELMA.TelegramBot.Handlers
         }
 
         public override string CommandName => "reset";
+        public override bool Show => false;
 
         public override Task HandleCommand(long identifier, object message)
         {
