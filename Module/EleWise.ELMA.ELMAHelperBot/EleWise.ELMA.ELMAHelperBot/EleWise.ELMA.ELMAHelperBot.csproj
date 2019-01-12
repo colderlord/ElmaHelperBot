@@ -35,6 +35,10 @@
       <HintPath>d:\Projects\elma3\Extensions\Visual Studio2013\DesignerBin\EleWise.ELMA.SDK.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="EleWise.ELMA.SDK.Web">
+      <HintPath>..\..\..\..\elma3\Applications\BPM\EleWise.ELMA.BPM.Web\bin\EleWise.ELMA.SDK.Web.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="Iesi.Collections">
       <HintPath>d:\Projects\elma3\Extensions\Visual Studio2013\DesignerBin\Iesi.Collections.dll</HintPath>
       <Private>False</Private>
@@ -43,6 +47,8 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceModel.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -63,13 +69,14 @@
       <DependentUpon>AssemblyInfo.md</DependentUpon>
     </Compile>
     <Compile Include="ProjectAssemblyInfo.cs" />
+    <Compile Include="Services\ITestWebApiService.cs" />
+    <Compile Include="Services\TestWebApiService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Components\" />
     <Folder Include="Exceptions\" />
     <Folder Include="Managers\" />
     <Folder Include="Models\" />
-    <Folder Include="Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
